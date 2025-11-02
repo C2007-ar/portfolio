@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carmel MILOGBO - Développeur Full-Stack & Cybersécurité</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: black;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --accent: #3498db;
+            --accent-hover: #2980b9;
+            --border: #e1e8ed;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --text-primary: #eef1f6;
+            --text-secondary: #a8b2c1;
+            --accent: #00adb5;
+            --accent-hover: #00949b;
+            --border: #2d3748;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--bg-primary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle, .lang-toggle {
+            background: none;
+            border: 2px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle:hover, .lang-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero .bio {
+            max-width: 700px;
+            margin: 2rem auto;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* Section */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent), #9b59b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Blog */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background-color: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .blog-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 15px var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid,
+            .skills-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">CM.</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-translate="nav-home">Accueil</a></li>
+                <li><a href="#skills" data-translate="nav-skills">Compétences</a></li>
+                <li><a href="#projects" data-translate="nav-projects">Projets</a></li>
+                <li><a href="#blog" data-translate="nav-blog">Blog</a></li>
+                <li><a href="#contact" data-translate="nav-contact">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button></li>
+                <li><button class="lang-toggle" id="langToggle">EN</button></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>MILOGBO Gbêtonnougbo M. Carmel</h1>
+        <p class="subtitle" data-translate="hero-subtitle">Développeur Full-Stack | Passionné de Cybersécurité</p>
+        <p class="bio" data-translate="hero-bio">
+            Étudiant en classes préparatoires aux écoles d'ingénieurs à Abomey-Calavi. 
+            Avec une licence 1 en Informatique et Télécommunications, je développe mes compétences 
+            en développement web full-stack tout en poursuivant mon objectif : devenir un expert 
+            en cybersécurité et maîtriser tous les aspects de la sécurité informatique.
+        </p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary" data-translate="hero-cta1">Voir mes projets</a>
+            <a href="#contact" class="btn btn-secondary" data-translate="hero-cta2">Me contacter</a>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title" data-translate="skills-title">Compétences Techniques</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-html5"></i>
+                <h3>Front-End</h3>
+                <p data-translate="skills-frontend">HTML, CSS, JavaScript - Création d'interfaces utilisateur modernes et responsives</p>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-php"></i>
+                <h3>Back-End</h3>
+                <p data-translate="skills-backend">PHP, MySQL - Développement côté serveur et gestion de bases de données</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3 data-translate="skills-security-title">Cybersécurité</h3>
+                <p data-translate="skills-security">En apprentissage continu - Sécurisation d'applications, cryptographie, tests de pénétration</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-code-branch"></i>
+                <h3 data-translate="skills-tools-title">Outils</h3>
+                <p data-translate="skills-tools">Git, GitHub, VS Code - Contrôle de version et développement collaboratif</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title" data-translate="projects-title">Projets Réalisés</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="project-content">
+                    <h3 data-translate="project1-title">Site E-Commerce</h3>
+                    <p data-translate="project1-desc">Plateforme de vente en ligne complète avec système de panier, gestion des produits, et interface administrateur. Intégration de paiement sécurisé.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-users-cog"></i>
+                </div>
+                <div class="project-content">
+                    <h3 data-translate="project2-title">Application de Gestion</h3>
+                    <p data-translate="project2-desc">Système de gestion d'étudiants avec suivi des notes, présences et génération de rapports. Interface intuitive pour administrateurs et enseignants.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-blog"></i>
+                </div>
+                <div class="project-content">
+                    <h3 data-translate="project3-title">Blog Personnel</h3>
+                    <p data-translate="project3-desc">Plateforme de blogging avec système de publication d'articles, commentaires, catégories et recherche. Panel d'administration complet.</p>
+                    <div class="project-tags">
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="project-content">
+                    <h3 data-translate="project4-title">Dashboard Administratif</h3>
+                    <p data-translate="project4-desc">Tableau de bord interactif avec visualisation de données, graphiques statistiques en temps réel et gestion multi-utilisateurs.</p>
+                    <div class="project-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-cloud-sun"></i>
+                </div>
+                <div class="project-content">
+                    <h3 data-translate="project5-title">Application Météo</h3>
+                    <p data-translate="project5-desc">Application web consommant des APIs externes pour afficher les prévisions météorologiques avec interface moderne et responsive.</p>
+                    <div class="project-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">API</span>
+                        <span class="tag">HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <h2 class="section-title" data-translate="blog-title">Articles & Réflexions</h2>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <p class="blog-date">15 Octobre 2024</p>
+                <h3 data-translate="blog1-title">Introduction à la Cybersécurité</h3>
+                <p data-translate="blog1-desc">Découvrez les fondamentaux de la cybersécurité et pourquoi c'est crucial dans notre monde numérique...</p>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;" data-translate="blog-read">Lire plus</a>
+            </div>
+
+            <div class="blog-card">
+                <p class="blog-date">8 Octobre 2024</p>
+                <h3 data-translate="blog2-title">Sécuriser une Application Web</h3>
+                <p data-translate="blog2-desc">Les meilleures pratiques pour protéger vos applications contre les vulnérabilités courantes...</p>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;" data-translate="blog-read">Lire plus</a>
+            </div>
+
+            <div class="blog-card">
+                <p class="blog-date">1 Octobre 2024</p>
+                <h3 data-translate="blog3-title">Mon Parcours vers la Cybersécurité</h3>
+                <p data-translate="blog3-desc">Comment je me prépare à devenir expert en cybersécurité et les ressources que j'utilise...</p>
+                <a href="#" class="btn btn-secondary" style="margin-top: 1rem; display: inline-block;" data-translate="blog-read">Lire plus</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title" data-translate="contact-title">Contactez-moi</h2>
+        <div class="contact-container">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name" data-translate="form-name">Nom</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-translate="form-email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" data-translate="form-message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" data-translate="form-submit">Envoyer le message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/c-2007" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:c47170315@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p data-translate="footer-text">&copy; 2024 Carmel MILOGBO. Tous droits réservés.</p>
+        <p style="margin-top: 0.5rem; color: var(--text-secondary);">Adjarra, Bénin</p>
+    </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            fr: {
+                'nav-home': 'Accueil',
+                'nav-skills': 'Compétences',
+                'nav-projects': 'Projets',
+                'nav-blog': 'Blog',
+                'nav-contact': 'Contact',
+                'hero-subtitle': 'Développeur Full-Stack | Passionné de Cybersécurité',
+                'hero-bio': 'Étudiant en classes préparatoires aux écoles d\'ingénieurs à Abomey-Calavi. Avec une licence 1 en Informatique et Télécommunications, je développe mes compétences en développement web full-stack tout en poursuivant mon objectif : devenir un expert en cybersécurité et maîtriser tous les aspects de la sécurité informatique.',
+                'hero-cta1': 'Voir mes projets',
+                'hero-cta2': 'Me contacter',
+                'skills-title': 'Compétences Techniques',
+                'skills-frontend': 'HTML, CSS, JavaScript - Création d\'interfaces utilisateur modernes et responsives',
+                'skills-backend': 'PHP, MySQL - Développement côté serveur et gestion de bases de données',
+                'skills-security-title': 'Cybersécurité',
+                'skills-security': 'En apprentissage continu - Sécurisation d\'applications, cryptographie, tests de pénétration',
+                'skills-tools-title': 'Outils',
+                'skills-tools': 'Git, GitHub, VS Code - Contrôle de version et développement collaboratif',
+                'projects-title': 'Projets Réalisés',
+                'project1-title': 'Site E-Commerce',
+                'project1-desc': 'Plateforme de vente en ligne complète avec système de panier, gestion des produits, et interface administrateur. Intégration de paiement sécurisé.',
+                'project2-title': 'Application de Gestion',
+                'project2-desc': 'Système de gestion d\'étudiants avec suivi des notes, présences et génération de rapports. Interface intuitive pour administrateurs et enseignants.',
+                'project3-title': 'Blog Personnel',
+                'project3-desc': 'Plateforme de blogging avec système de publication d\'articles, commentaires, catégories et recherche. Panel d\'administration complet.',
+                'project4-title': 'Dashboard Administratif',
+                'project4-desc': 'Tableau de bord interactif avec visualisation de données, graphiques statistiques en temps réel et gestion multi-utilisateurs.',
+                'project5-title': 'Application Météo',
+                'project5-desc': 'Application web consommant des APIs externes pour afficher les prévisions météorologiques avec interface moderne et responsive.',
+                'blog-title': 'Articles & Réflexions',
+                'blog1-title': 'Introduction à la Cybersécurité',
+                'blog1-desc': 'Découvrez les fondamentaux de la cybersécurité et pourquoi c\'est crucial dans notre monde numérique...',
+                'blog2-title': 'Sécuriser une Application Web',
+                'blog2-desc': 'Les meilleures pratiques pour protéger vos applications contre les vulnérabilités courantes...',
+                'blog3-title': 'Mon Parcours vers la Cybersécurité',
+                'blog3-desc': 'Comment je me prépare à devenir expert en cybersécurité et les ressources que j\'utilise...',
+                'blog-read': 'Lire plus',
+                'contact-title': 'Contactez-moi',
+                'form-name': 'Nom',
+                'form-email': 'Email',
+                'form-message': 'Message',
+                'form-submit': 'Envoyer le message',
+                'footer-text': '© 2024 Carmel MILOGBO. Tous droits réservés.'
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-skills': 'Skills',
+                'nav-projects': 'Projects',
+                'nav-blog': 'Blog',
+                'nav-contact': 'Contact',
+                'hero-subtitle': 'Full-Stack Developer | Cybersecurity Enthusiast',
+                'hero-bio': 'Student in preparatory classes for engineering schools in Abomey-Calavi. With a Bachelor\'s degree in Computer Science and Telecommunications, I develop my full-stack web development skills while pursuing my goal: becoming a cybersecurity expert and mastering all aspects of computer security.',
+                'hero-cta1': 'View my projects',
+                'hero-cta2': 'Contact me',
+                'skills-title': 'Technical Skills',
+                'skills-frontend': 'HTML, CSS, JavaScript - Creating modern and responsive user interfaces',
+                'skills-backend': 'PHP, MySQL - Server-side development and database management',
+                'skills-security-title': 'Cybersecurity',
+                'skills-security': 'Continuous learning - Application security, cryptography, penetration testing',
+                'skills-tools-title': 'Tools',
+                'skills-tools': 'Git, GitHub, VS Code - Version control and collaborative development',
+                'projects-title': 'Completed Projects',
+                'project1-title': 'E-Commerce Website',
+                'project1-desc': 'Complete online sales platform with cart system, product management, and admin interface. Secure payment integration.',
+                'project2-title': 'Management Application',
+                'project2-desc': 'Student management system with grade tracking, attendance, and report generation. Intuitive interface for administrators and teachers.',
+                'project3-title': 'Personal Blog',
+                'project3-desc': 'Blogging platform with article publishing system, comments, categories, and search. Complete administration panel.',
+                'project4-title': 'Administrative Dashboard',
+                'project4-desc': 'Interactive dashboard with data visualization, real-time statistical charts, and multi-user management.',
+                'project5-title': 'Weather Application',
+                'project5-desc': 'Web application consuming external APIs to display weather forecasts with modern and responsive interface.',
+                'blog-title': 'Articles & Thoughts',
+                'blog1-title': 'Introduction to Cybersecurity',
+                'blog1-desc': 'Discover the fundamentals of cybersecurity and why it\'s crucial in our digital world...',
+                'blog2-title': 'Securing a Web Application',
+                'blog2-desc': 'Best practices to protect your applications against common vulnerabilities...',
+                'blog3-title': 'My Journey to Cybersecurity',
+                'blog3-desc': 'How I\'m preparing to become a cybersecurity expert and the resources I use...',
+                'blog-read': 'Read more',
+                'contact-title': 'Contact Me',
+                'form-name': 'Name',
+                'form-email': 'Email',
+                'form-message': 'Message',
+                'form-submit': 'Send message',
+                'footer-text': '© 2024 Carmel MILOGBO. All rights reserved.'
+            }
+        };
+
+        let currentLang = 'fr';
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            const icon = themeToggle.querySelector('i');
+            icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Language Toggle
+        const langToggle = document.getElementById('langToggle');
+        
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            langToggle.textContent = currentLang === 'fr' ? 'EN' : 'FR';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLang][key]) {
+                    element.textContent = translations[currentLang][key];
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact Form
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simulate form submission
+            alert(currentLang === 'fr' 
+                ? `Merci ${name} ! Votre message a été envoyé. Je vous répondrai bientôt à ${email}.`
+                : `Thank you ${name}! Your message has been sent. I will reply to you soon at ${email}.`
+            );
+            
+            contactForm.reset();
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.skill-card, .project-card, .blog-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
