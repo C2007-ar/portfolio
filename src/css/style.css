@@ -1,0 +1,133 @@
+/* =============================
+   ETAT INITIAL (éléments cachés)
+============================= */
+
+.appl,
+.appr,
+.appz,
+.appy,
+.appy3,
+.appy4,
+.appy6 {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+
+/* =============================
+   ANIMATION GAUCHE
+============================= */
+
+@keyframes slideLeft {
+    from {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.appl.visible {
+    animation: slideLeft 3s forwards;
+}
+
+
+/* =============================
+   ANIMATION DROITE
+============================= */
+
+@keyframes slideRight {
+    from {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.appr.visible {
+    animation: slideRight 3s forwards;
+}
+
+
+/* =============================
+   ANIMATION SCALE
+============================= */
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.appz.visible {
+    animation: scaleIn 5s forwards;
+}
+
+
+/* =============================
+   ANIMATION BAS (réutilisable)
+============================= */
+
+@keyframes slideBottom {
+    from {
+        transform: translateY(200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.appy.visible {
+    animation: slideBottom 5s forwards;
+}
+
+.appy3.visible {
+    animation: slideBottom 1s forwards;
+}
+
+.appy4.visible {
+    animation: slideBottom 3s forwards;
+}
+
+.appy6.visible {
+    animation: slideBottom 7s forwards;
+}
+
+
+/* =============================
+   ANIMATION FORMULAIRE
+============================= */
+
+@keyframes formAppear {
+    from {
+        transform: translateX(-500px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Le formulaire sera caché par défaut */
+form {
+    display: none;
+}
+
+/* Quand visible est ajouté */
+form.visible {
+    display: block;
+    animation: formAppear 3s forwards;
+}
