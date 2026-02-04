@@ -30,7 +30,7 @@
 }
 
 .appl.visible {
-    animation: slideLeft 3s forwards;
+    animation: slideLeft 1s forwards;
 }
 
 
@@ -50,7 +50,7 @@
 }
 
 .appr.visible {
-    animation: slideRight 3s forwards;
+    animation: slideRight 1s forwards;
 }
 
 
@@ -70,7 +70,7 @@
 }
 
 .appz.visible {
-    animation: scaleIn 5s forwards;
+    animation: scaleIn 2s forwards;
 }
 
 
@@ -90,19 +90,19 @@
 }
 
 .appy.visible {
-    animation: slideBottom 5s forwards;
+    animation: slideBottom 2s forwards;
 }
 
 .appy3.visible {
-    animation: slideBottom 1s forwards;
+    animation: slideBottom 700ms forwards;
 }
 
 .appy4.visible {
-    animation: slideBottom 3s forwards;
+    animation: slideBottom 1s forwards;
 }
 
 .appy6.visible {
-    animation: slideBottom 7s forwards;
+    animation: slideBottom 3s forwards;
 }
 
 
@@ -129,5 +129,5 @@ form {
 /* Quand visible est ajouté */
 form.visible {
     display: block;
-    animation: formAppear 3s forwards;
+    animation: formAppear 1s forwards;
 }
